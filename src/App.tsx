@@ -1,6 +1,8 @@
 import { Listbox } from '@headlessui/react';
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef, useEffect, useState } from 'react';
+import { Inbox } from './modules/inbox';
+import { Task } from './modules/task';
 
 const options = ['inbox', 'task'] as const;
 type Option = typeof options[number];
@@ -41,7 +43,7 @@ const Icon = (props: IconProps) => {
 	);
 };
 
-function App() {
+export const App = () => {
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
 	useEffect(() => {
@@ -58,6 +60,9 @@ function App() {
 
 			<div className="relative h-full flex-1">
 				<header className="bg-[#4F4F4F] pt-[1.1875rem] pb-[1.4375rem] pl-[1.625rem]"></header>
+
+				{selectedOption === 'inbox' ? <Inbox /> : null}
+				{selectedOption === 'task' ? <Task /> : null}
 
 				<Listbox
 					value={selectedOption}
@@ -132,6 +137,4 @@ function App() {
 			</div>
 		</div>
 	);
-}
-
-export default App;
+};
