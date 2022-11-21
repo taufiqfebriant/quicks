@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: 'Inter';
+	font-family: 'Lato';
 	font-style: normal;
-	font-weight: 100 900;
+	font-weight: 400;
 	font-display: optional;
-	src: url('/fonts/inter-variablefont_slntwght-webfont.woff2') format('woff2');
+	src: url('/fonts/lato-regular-webfont.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 700;
+	font-display: optional;
+	src: url('/fonts/lato-bold-webfont.woff2') format('woff2');
 }
