@@ -1,6 +1,13 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-const icons = ['lightning', 'question-answer', 'chrome-reader-mode', 'person'] as const;
+const icons = [
+	'lightning',
+	'question-answer',
+	'chrome-reader-mode',
+	'person',
+	'arrow-left',
+	'close'
+] as const;
 export type Icon = typeof icons[number];
 
 interface IconProps extends ComponentPropsWithoutRef<'svg'> {
