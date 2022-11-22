@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
+    "@lukemorales/query-key-factory": "^1.0.3",
+    "@tanstack/react-query": "^4.16.1",
+    "@tanstack/react-query-devtools": "^4.16.1",
     "clsx": "^1.2.1",
     "hoofd": "^1.5.2",
+    "jotai": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
