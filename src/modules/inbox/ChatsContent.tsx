@@ -5,7 +5,7 @@ import { Icon } from '../../components/Icon';
 import { queries } from '../../utils/queryKeys';
 import { menuAtom, selectedPostAtom } from './atoms';
 
-export const MessagesContent = () => {
+export const ChatsContent = () => {
 	const [, setMenu] = useAtom(menuAtom);
 	const [, setSelectedPost] = useAtom(selectedPostAtom);
 	const posts = useInfiniteQuery(queries.posts.list({ page: 1, limit: 5 }));
@@ -61,11 +61,13 @@ export const MessagesContent = () => {
 
 									<div className="ml-[1.0625rem] overflow-hidden">
 										<h1 className="font-bold text-[#2F80ED]">{post.title}</h1>
-										<p className="text-sm font-bold">Cameron Phillips :</p>
-										<p className="text-ellipsis whitespace-nowrap text-sm">{post.body}</p>
+										<p className="text-sm font-bold">{post.lastComment.name} :</p>
+										<p className="text-ellipsis whitespace-nowrap text-sm">
+											{post.lastComment.body}
+										</p>
 									</div>
 
-									<p className="ml-4 shrink-0 text-sm">January 1, 2021 19:10</p>
+									<p className="ml-4 shrink-0 text-sm">{post.lastComment.date}</p>
 								</button>
 						  ))
 						: null}

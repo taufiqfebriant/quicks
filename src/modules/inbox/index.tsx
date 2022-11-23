@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { menuAtom, selectedPostAtom } from './atoms';
+import { Chats } from './Chats';
 import { Message } from './Message';
-import { Messages } from './Messages';
 
 export const Inbox = () => {
 	const [menu] = useAtom(menuAtom);
@@ -9,7 +9,7 @@ export const Inbox = () => {
 
 	return (
 		<div className="h-[31.25rem] w-[45.875rem] overflow-y-auto rounded-md bg-white">
-			{menu === 'messages' ? <Messages /> : null}
+			{menu === 'messages' ? <Chats /> : null}
 			{menu === 'message' && selectedPost ? <Message post={selectedPost} /> : null}
 		</div>
 	);
