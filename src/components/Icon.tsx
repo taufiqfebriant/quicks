@@ -6,7 +6,8 @@ const icons = [
 	'chrome-reader-mode',
 	'person',
 	'arrow-left',
-	'close'
+	'close',
+	'spinner'
 ] as const;
 export type Icon = typeof icons[number];
 
