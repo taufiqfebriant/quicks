@@ -3,10 +3,11 @@ import { useAtom } from 'jotai';
 import { Fragment } from 'react';
 import { Icon } from '../../components/Icon';
 import { queries } from '../../utils/queryKeys';
-import { menuAtom } from './atoms';
+import { menuAtom, selectedPostAtom } from './atoms';
 
 export const MessagesContent = () => {
 	const [, setMenu] = useAtom(menuAtom);
+	const [, setSelectedPost] = useAtom(selectedPostAtom);
 	const posts = useInfiniteQuery(queries.posts.list({ page: 1, limit: 5 }));
 
 	if (posts.isLoading) {
@@ -31,6 +32,11 @@ export const MessagesContent = () => {
 		return <p>Something went wrong.</p>;
 	}
 
+	const handlePostClick = (post: typeof posts['data']['pages'][number][number]) => {
+		setSelectedPost(post);
+		setMenu('message');
+	};
+
 	return posts.data?.pages.length ? (
 		<article className="flex flex-col divide-y divide-[#828282]">
 			{posts.data.pages.map((page, index) => (
@@ -39,7 +45,7 @@ export const MessagesContent = () => {
 						? page.map(post => (
 								<button
 									type="button"
-									onClick={() => setMenu('message')}
+									onClick={() => handlePostClick(post)}
 									key={post.id}
 									className="flex py-[1.375rem] text-left text-[#4F4F4F]"
 								>
