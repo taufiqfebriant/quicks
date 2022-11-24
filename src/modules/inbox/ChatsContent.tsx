@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { Fragment } from 'react';
 import { Icon } from '../../components/Icon';
@@ -49,25 +50,43 @@ export const ChatsContent = () => {
 									key={post.id}
 									className="flex py-[1.375rem] text-left text-[#4F4F4F]"
 								>
-									<div className="flex w-[3.1875rem]">
-										<div className="relative z-0 flex h-[2.125rem] w-[2.125rem] items-center rounded-full bg-[#E0E0E0] text-black">
-											<Icon id="person" className="h-3" fill="currentColor" />
-										</div>
+									<div
+										className={clsx('flex w-[3.1875rem] shrink-0', {
+											'justify-center': post.category === 'personal'
+										})}
+									>
+										{post.category === 'group' ? (
+											<>
+												<div className="relative z-0 flex h-[2.125rem] w-[2.125rem] items-center rounded-full bg-[#E0E0E0] text-black">
+													<Icon id="person" className="h-3" fill="currentColor" />
+												</div>
 
-										<div className="relative -left-[1.0625rem] z-10 flex h-[2.125rem] w-[2.125rem] items-center rounded-full bg-[#2F80ED] text-white">
-											<Icon id="person" className="h-3" fill="currentColor" />
-										</div>
+												<div className="relative -left-[1.0625rem] z-10 flex h-[2.125rem] w-[2.125rem] items-center rounded-full bg-[#2F80ED] text-white">
+													<Icon id="person" className="h-3" fill="currentColor" />
+												</div>
+											</>
+										) : (
+											<div className="flex h-[2.125rem] w-[2.125rem] items-center justify-center rounded-full bg-[#2F80ED] text-white">
+												{post.lastComment.name.charAt(0)}
+											</div>
+										)}
 									</div>
 
-									<div className="ml-[1.0625rem] overflow-hidden">
-										<h1 className="font-bold text-[#2F80ED]">{post.title}</h1>
-										<p className="text-sm font-bold">{post.lastComment.name} :</p>
-										<p className="text-ellipsis whitespace-nowrap text-sm">
+									<div className="ml-[1.0625rem] min-w-0">
+										<h1 className="font-bold text-[#2F80ED]">
+											{post.category === 'group' ? post.title : post.lastComment.name}
+										</h1>
+
+										{post.category === 'group' ? (
+											<p className="text-sm font-bold">{post.lastComment.name} :</p>
+										) : null}
+
+										<p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm">
 											{post.lastComment.body}
 										</p>
 									</div>
 
-									<p className="ml-4 shrink-0 text-sm">{post.lastComment.date}</p>
+									<p className="ml-4 text-sm">{post.lastComment.date}</p>
 								</button>
 						  ))
 						: null}

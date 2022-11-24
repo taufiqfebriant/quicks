@@ -5,7 +5,13 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import './index.css';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: import.meta.env.PROD
+		}
+	}
+});
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
