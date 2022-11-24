@@ -1,12 +1,11 @@
 import { Listbox } from '@headlessui/react';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { Icon } from './components/Icon';
 import { Inbox } from './modules/inbox';
 import { Task } from './modules/task';
-
-const options = ['inbox', 'task'] as const;
-type Option = typeof options[number];
+import { Option, options, selectedOptionAtom } from './utils/atoms';
 
 type OptionInfo = {
 	icon: Icon;
@@ -28,7 +27,7 @@ const optionInfo: Record<Option, OptionInfo> = {
 };
 
 export const App = () => {
-	const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+	const [selectedOption, setSelectedOption] = useAtom(selectedOptionAtom);
 
 	useEffect(() => {
 		document.body.classList.add('bg-[#333333]', 'text-[#F2F2F2]');
@@ -43,7 +42,9 @@ export const App = () => {
 			<div className="w-[17.8125rem]" />
 
 			<div className="h-full flex-1">
-				<header className="bg-[#4F4F4F] pt-[1.1875rem] pb-[1.4375rem] pl-[1.625rem]"></header>
+				<header className="bg-[#4F4F4F] pt-[1.1875rem] pb-[1.4375rem] pl-[1.625rem]">
+					<Icon id="search" className="h-4 w-4 text-[#F2F2F2]" fill="currentColor" />
+				</header>
 
 				<div className="fixed bottom-[1.6875rem] right-[2.125rem] flex flex-col gap-y-[.9375rem]">
 					{selectedOption === 'inbox' ? <Inbox /> : null}

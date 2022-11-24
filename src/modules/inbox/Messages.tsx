@@ -1,11 +1,13 @@
 import dayjs from 'dayjs';
 import { useAtom } from 'jotai';
 import { Icon } from '../../components/Icon';
+import { selectedOptionAtom } from '../../utils/atoms';
 import { menuAtom, selectedPostAtom } from './atoms';
 
 export const Messages = () => {
 	const [, setMenu] = useAtom(menuAtom);
 	const [selectedPost] = useAtom(selectedPostAtom);
+	const [, setSelectedOption] = useAtom(selectedOptionAtom);
 
 	return (
 		<div className="flex h-full flex-col">
@@ -24,7 +26,11 @@ export const Messages = () => {
 					<p className="text-xs text-[#333333]">3 participants</p>
 				</header>
 
-				<button type="button" className="h-3.5 w-3.5 text-[#333333]">
+				<button
+					type="button"
+					className="h-3.5 w-3.5 text-[#333333]"
+					onClick={() => setSelectedOption(null)}
+				>
 					<Icon id="close" fill="currentColor" className="h-full w-full" />
 				</button>
 			</div>
