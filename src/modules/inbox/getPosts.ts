@@ -10,7 +10,7 @@ type ChatCategory = typeof chatCategories[number];
 
 type PostWithComments = Post & { comments: Comment[] };
 
-type ModifiedPost = Post & {
+export type ModifiedPost = Post & {
 	comments: (Comment & { date: string; readedAt: string | null })[];
 	category: ChatCategory;
 };

@@ -3,7 +3,7 @@ import { Icon } from '../../components/Icon';
 import { queries } from '../../utils/queryKeys';
 import { Post } from './types';
 
-export const MessageContent = (params: Pick<Post, 'id'>) => {
+export const MessagesContent = (params: Pick<Post, 'id'>) => {
 	const comments = useQuery(
 		queries.comments.byPostId({
 			id: params.id

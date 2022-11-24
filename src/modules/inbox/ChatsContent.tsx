@@ -83,7 +83,9 @@ export const ChatsContent = () => {
 
 											<p className="shrink-0 text-sm">
 												{dayjs(post.comments[post.comments.length - 1].date).format(
-													'DD/MM/YYYY HH:mm'
+													post.comments[post.comments.length - 1].readedAt
+														? 'DD/MM/YYYY HH:mm'
+														: 'MMMM D,YYYY HH:mm'
 												)}
 											</p>
 										</div>

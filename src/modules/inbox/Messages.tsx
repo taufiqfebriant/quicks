@@ -1,14 +1,14 @@
 import { useAtom } from 'jotai';
 import { Icon } from '../../components/Icon';
 import { menuAtom } from './atoms';
-import { MessageContent } from './MessageContent';
-import { Post } from './types';
+import { ModifiedPost } from './getPosts';
+import { MessagesContent } from './MessagesContent';
 
 type Params = {
-	post: Post;
+	post: ModifiedPost;
 };
 
-export const Message = (params: Params) => {
+export const Messages = (params: Params) => {
 	const [, setMenu] = useAtom(menuAtom);
 
 	return (
@@ -33,7 +33,7 @@ export const Message = (params: Params) => {
 				</button>
 			</div>
 
-			<MessageContent id={params.post.id} />
+			<MessagesContent id={params.post.id} />
 		</div>
 	);
 };
