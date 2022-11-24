@@ -10,7 +10,10 @@ type ChatCategory = typeof chatCategories[number];
 
 type PostWithComments = Post & { comments: Comment[] };
 
-type ModifiedPost = Post & { lastComment: Comment & { date: string }; category: ChatCategory };
+type ModifiedPost = Post & {
+	comments: (Comment & { date: string; readedAt: string | null })[];
+	category: ChatCategory;
+};
 
 export const getPosts = async (params: GetPostsParams) => {
 	const queryString = new URLSearchParams({
@@ -28,16 +31,17 @@ export const getPosts = async (params: GetPostsParams) => {
 	const jsonResponse: PostWithComments[] = await response.json();
 	let date = new Date();
 
-	const newPosts: ModifiedPost[] = jsonResponse.map(({ comments, ...rest }) => {
-		const category = chatCategories[Math.floor(Math.random() * chatCategories.length)];
-		date = new Date(date.getTime() - 1000 * 60 * 5);
+	const newPosts: ModifiedPost[] = jsonResponse.map(({ comments, ...rest }, index) => {
+		const category = index <= 2 ? 'group' : 'personal';
 
-		const lastComment: ModifiedPost['lastComment'] = {
-			...comments[comments.length - 1],
-			date: date.toISOString()
-		};
+		const newComments: ModifiedPost['comments'] = comments.map(comment => {
+			date = new Date(date.getTime() - 1000 * 60 * 5);
+			const readedAt = null;
 
-		return { ...rest, category, lastComment };
+			return { ...comment, date: date.toISOString(), readedAt };
+		});
+
+		return { ...rest, category, comments: newComments };
 	});
 
 	return newPosts;

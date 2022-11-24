@@ -14,6 +14,7 @@
     "@tanstack/react-query": "^4.16.1",
     "@tanstack/react-query-devtools": "^4.16.1",
     "clsx": "^1.2.1",
+    "dayjs": "^1.11.6",
     "hoofd": "^1.5.2",
     "jotai": "^1.10.0",
     "react": "^18.2.0",

@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
+import * as dayjs from 'dayjs';
 import { useAtom } from 'jotai';
 import { Fragment } from 'react';
 import { Icon } from '../../components/Icon';
@@ -67,26 +68,36 @@ export const ChatsContent = () => {
 											</>
 										) : (
 											<div className="flex h-[2.125rem] w-[2.125rem] items-center justify-center rounded-full bg-[#2F80ED] text-white">
-												{post.lastComment.name.charAt(0)}
+												{post.comments[post.comments.length - 1].name.charAt(0)}
 											</div>
 										)}
 									</div>
 
 									<div className="ml-[1.0625rem] min-w-0">
-										<h1 className="font-bold text-[#2F80ED]">
-											{post.category === 'group' ? post.title : post.lastComment.name}
-										</h1>
+										<div className="flex items-center gap-x-4">
+											<h1 className="overflow-hidden text-ellipsis whitespace-nowrap font-bold text-[#2F80ED]">
+												{post.category === 'group'
+													? post.title
+													: post.comments[post.comments.length - 1].name}
+											</h1>
+
+											<p className="shrink-0 text-sm">
+												{dayjs(post.comments[post.comments.length - 1].date).format(
+													'DD/MM/YYYY HH:mm'
+												)}
+											</p>
+										</div>
 
 										{post.category === 'group' ? (
-											<p className="text-sm font-bold">{post.lastComment.name} :</p>
+											<p className="text-sm font-bold">
+												{post.comments[post.comments.length - 1].name} :
+											</p>
 										) : null}
 
 										<p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm">
-											{post.lastComment.body}
+											{post.comments[post.comments.length - 1].body}
 										</p>
 									</div>
-
-									<p className="ml-4 text-sm">{post.lastComment.date}</p>
 								</button>
 						  ))
 						: null}
