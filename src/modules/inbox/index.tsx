@@ -10,7 +10,7 @@ export const Inbox = () => {
 	return (
 		<div className="h-[31.25rem] w-[45.875rem] overflow-y-auto rounded-md bg-white">
 			{menu === 'messages' ? <Chats /> : null}
-			{menu === 'message' && selectedPost ? <Messages post={selectedPost} /> : null}
+			{menu === 'message' && selectedPost ? <Messages /> : null}
 		</div>
 	);
 };
