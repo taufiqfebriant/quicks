@@ -49,7 +49,7 @@ export const ChatsContent = () => {
 									type="button"
 									onClick={() => handlePostClick(post)}
 									key={post.id}
-									className="flex py-[1.375rem] text-left text-[#4F4F4F]"
+									className="relative flex py-[1.375rem] text-left text-[#4F4F4F]"
 								>
 									<div
 										className={clsx('flex w-[3.1875rem] shrink-0', {
@@ -98,6 +98,10 @@ export const ChatsContent = () => {
 											{post.comments[post.comments.length - 1].body}
 										</p>
 									</div>
+
+									{post.comments[post.comments.length - 1].readedAt === null ? (
+										<div className="absolute right-0 top-1/2 h-[.625rem] w-[.625rem] -translate-y-1/2 rounded-full bg-[#EB5757]" />
+									) : null}
 								</button>
 						  ))
 						: null}

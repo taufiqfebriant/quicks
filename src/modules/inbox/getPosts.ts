@@ -36,7 +36,7 @@ export const getPosts = async (params: GetPostsParams) => {
 
 		const newComments: ModifiedPost['comments'] = comments.map(comment => {
 			date = new Date(date.getTime() - 1000 * 60 * 5);
-			const readedAt = null;
+			const readedAt = index === 0 ? null : new Date().toISOString();
 
 			return { ...comment, date: date.toISOString(), readedAt };
 		});
