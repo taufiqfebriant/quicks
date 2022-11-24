@@ -34,14 +34,14 @@ export const getPosts = async (params: GetPostsParams) => {
 	const newPosts: ModifiedPost[] = jsonResponse.map(({ comments, ...rest }, index) => {
 		const category = index <= 2 ? 'group' : 'personal';
 
-		const newComments: ModifiedPost['comments'] = comments.map(comment => {
+		const newComments: ModifiedPost['comments'] = comments.reverse().map(comment => {
 			date = new Date(date.getTime() - 1000 * 60 * 5);
 			const readedAt = index === 0 ? null : new Date().toISOString();
 
 			return { ...comment, date: date.toISOString(), readedAt };
 		});
 
-		return { ...rest, category, comments: newComments };
+		return { ...rest, category, comments: newComments.reverse() };
 	});
 
 	return newPosts;
