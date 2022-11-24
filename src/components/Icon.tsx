@@ -7,7 +7,8 @@ const icons = [
 	'person',
 	'arrow-left',
 	'close',
-	'spinner'
+	'spinner',
+	'search'
 ] as const;
 export type Icon = typeof icons[number];
 

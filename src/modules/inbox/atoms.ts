@@ -7,3 +7,5 @@ type Menu = typeof menus[number];
 export const menuAtom = atom<Menu>('messages');
 
 export const selectedPostAtom = atom<ModifiedPost | null>(null);
+
+export const searchAtom = atom<string | null>(null);
