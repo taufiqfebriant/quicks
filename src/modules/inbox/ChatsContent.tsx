@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { useAtom } from 'jotai';
 import { Fragment } from 'react';
 import { Icon } from '../../components/Icon';
